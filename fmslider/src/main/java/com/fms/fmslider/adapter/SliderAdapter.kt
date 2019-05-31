@@ -3,6 +3,8 @@ package com.fms.fmslider.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 
 public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.widget.PagerAdapter() {
@@ -21,6 +23,8 @@ public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.w
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         Picasso.get()
             .load(list[position])
+//            .networkPolicy(NetworkPolicy.NO_CACHE)
+            .memoryPolicy(MemoryPolicy.NO_CACHE)
             .into(imageView)
         container.addView(imageView)
         return imageView

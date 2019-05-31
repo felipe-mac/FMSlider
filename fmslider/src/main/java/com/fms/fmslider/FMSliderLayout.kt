@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import androidx.viewpager.widget.ViewPager
 import com.fms.fmslider.adapter.SliderAdapter
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.slider_layout.view.*
 
 
@@ -99,6 +100,5 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
     fun clearMemory() {
         viewPager.removeAllViews()
         viewPager.adapter = null
-//        Glide.get(context).clearMemory()
     }
 }
