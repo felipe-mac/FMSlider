@@ -4,6 +4,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.fms.fmslider.GlideApp
+import com.fms.fmslider.GlideRequests
+import android.graphics.drawable.Drawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
+
+
 
 public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.widget.PagerAdapter() {
 
@@ -19,8 +25,11 @@ public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.w
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
         imageView.scaleType = ImageView.ScaleType.FIT_CENTER
-        GlideApp.with(container.context.applicationContext)
+        val requestBuilder = Glide.with(container.context).`as`(Drawable::class.java)
+/*        requests.with(container.context.applicationContext)
             .load(list[position])
+            .into(imageView)*/
+        requestBuilder.load(list[position])
             .into(imageView)
         container.addView(imageView)
         return imageView
