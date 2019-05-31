@@ -99,6 +99,6 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
     fun clearMemory() {
         viewPager.removeAllViews()
         viewPager.adapter = null
-        Glide.get(context).clearMemory()
+//        Glide.get(context).clearMemory()
     }
 }
