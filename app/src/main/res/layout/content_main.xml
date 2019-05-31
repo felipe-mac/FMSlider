@@ -9,4 +9,8 @@
         tools:showIn="@layout/activity_main"
         tools:context=".MainActivity">
 
+    <com.fms.fmslider.FMSliderLayout
+            android:id="@+id/fmSlider"
+            android:layout_width="match_parent"
+                                     android:layout_height="match_parent"/>
 </RelativeLayout>

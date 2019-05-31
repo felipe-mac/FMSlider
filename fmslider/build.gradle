@@ -34,8 +34,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    kapt 'com.github.bumptech.glide:compiler:4.9.0'
-    kapt 'androidx.annotation:annotation:1.0.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 repositories {
     mavenCentral()

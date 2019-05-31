@@ -3,10 +3,7 @@ package com.fms.fmslider.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.graphics.drawable.Drawable
-import com.bumptech.glide.Glide
-
-
+import com.squareup.picasso.Picasso
 
 public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.widget.PagerAdapter() {
 
@@ -21,12 +18,9 @@ public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.w
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
-        imageView.scaleType = ImageView.ScaleType.FIT_CENTER
-        val requestBuilder = Glide.with(container.context).`as`(Drawable::class.java)
-/*        requests.with(container.context.applicationContext)
+        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        Picasso.get()
             .load(list[position])
-            .into(imageView)*/
-        requestBuilder.load(list[position])
             .into(imageView)
         container.addView(imageView)
         return imageView

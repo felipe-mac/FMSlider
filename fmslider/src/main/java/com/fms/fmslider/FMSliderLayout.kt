@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
 import com.fms.fmslider.adapter.SliderAdapter
 import kotlinx.android.synthetic.main.slider_layout.view.*
 
@@ -25,6 +24,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+
         LayoutInflater.from(context).inflate(R.layout.slider_layout, this, true)
     }
 
