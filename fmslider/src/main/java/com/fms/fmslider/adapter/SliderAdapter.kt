@@ -28,7 +28,7 @@ public class SliderAdapter(
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
 
         val params = RelativeLayout.LayoutParams(width, (height*factor).toInt())
-        imageView.setPadding(1,2,1,2)
+        imageView.setPadding(2,6,2,6)
         imageView.layoutParams = params
 
         imageView.cropToPadding = true
