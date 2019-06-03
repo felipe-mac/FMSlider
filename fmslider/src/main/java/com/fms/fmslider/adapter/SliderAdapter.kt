@@ -4,10 +4,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.squareup.picasso.MemoryPolicy
-import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 
-public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.widget.PagerAdapter() {
+public class SliderAdapter(
+    val list: MutableList<String>,
+    val height: Int,
+    val width: Int,
+    val factor: Float
+) : androidx.viewpager.widget.PagerAdapter() {
 
 
     override fun isViewFromObject(view: View, obj: Any): Boolean {
@@ -20,9 +24,10 @@ public class SliderAdapter(val list: MutableList<String>) : androidx.viewpager.w
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        imageView.scaleType = ImageView.ScaleType.FIT_CENTER
         Picasso.get()
             .load(list[position])
+            .resize(width, (height*factor).toInt())
 //            .networkPolicy(NetworkPolicy.NO_CACHE)
             .memoryPolicy(MemoryPolicy.NO_CACHE)
             .into(imageView)

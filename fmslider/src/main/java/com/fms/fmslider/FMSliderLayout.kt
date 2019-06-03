@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.RelativeLayout
 import androidx.viewpager.widget.ViewPager
 import com.fms.fmslider.adapter.SliderAdapter
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.slider_layout.view.*
 
 
@@ -52,7 +51,15 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         }
     }
 
-    fun initImages(listImagePath: List<String>) {
+    /**
+     * Esse método inicializa o carregamento das imagens a partir de uma lista de URLs.
+     *
+     * @param listImagePath: lista de URLS a serem carregadas.
+     * @param height: altura da tela do dispositivo
+     * @param width: largura da tela do dispositivo
+     * @param factor: fator de redimensionamento da altura (porcentagem da altura da tela). Default = 1
+     */
+    fun initImages(listImagePath: List<String>, height: Int, width: Int, factor: Float = 1F) {
 
         arrowLeft.visibility = View.VISIBLE
         arrowRight.visibility = View.VISIBLE
@@ -62,7 +69,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
 
         list = listImagePath as MutableList<String>
 
-        val adapter = SliderAdapter(list)
+        val adapter = SliderAdapter(list, height, width, factor)
         viewPager.adapter = adapter
 
 
