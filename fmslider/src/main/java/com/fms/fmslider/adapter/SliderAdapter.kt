@@ -28,10 +28,9 @@ public class SliderAdapter(
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
 
         val params = RelativeLayout.LayoutParams(width, (height*factor).toInt())
-        imageView.setPadding(2,6,2,6)
+        imageView.setPadding(2,8,2,8)
         imageView.layoutParams = params
 
-        imageView.cropToPadding = true
 
         Picasso.get()
             .load(list[position])
