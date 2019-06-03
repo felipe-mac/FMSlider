@@ -61,7 +61,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
      */
     fun initImages(listImagePath: List<String>, height: Int, width: Int, factor: Float = 1F) {
 
-        arrowLeft.visibility = View.VISIBLE
+        arrowLeft.visibility = View.GONE
         arrowRight.visibility = View.VISIBLE
 
         arrowLeft.setOnClickListener(this)

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val height = displayMetrics.heightPixels
         val width = displayMetrics.widthPixels
 
-        fmSlider.initImages(list, height, width, 0.65F)*/
+        fmSlider.initImages(list, height, width, 0.70F)*/
 
     }
 }

@@ -24,12 +24,15 @@ public class SliderAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
-        imageView.scaleType = ImageView.ScaleType.FIT_CENTER
+        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        imageView.layoutParams = ViewGroup.LayoutParams(width, (height*factor).toInt())
+        imageView.cropToPadding = true
+
         Picasso.get()
             .load(list[position])
             .resize(width, (height*factor).toInt())
 //            .networkPolicy(NetworkPolicy.NO_CACHE)
-            .memoryPolicy(MemoryPolicy.NO_CACHE)
+//            .memoryPolicy(MemoryPolicy.NO_CACHE)
             .into(imageView)
         container.addView(imageView)
         return imageView
