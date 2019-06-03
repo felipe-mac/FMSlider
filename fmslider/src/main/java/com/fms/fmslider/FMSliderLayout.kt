@@ -55,11 +55,8 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
      * Esse método inicializa o carregamento das imagens a partir de uma lista de URLs.
      *
      * @param listImagePath: lista de URLS a serem carregadas.
-     * @param height: altura da tela do dispositivo
-     * @param width: largura da tela do dispositivo
-     * @param factor: fator de redimensionamento da altura (porcentagem da altura da tela). Default = 1
      */
-    fun initImages(listImagePath: List<String>, height: Int, width: Int, factor: Float = 1F) {
+    fun initImages(listImagePath: List<String>) {
 
         arrowLeft.visibility = View.GONE
         arrowRight.visibility = View.VISIBLE
@@ -69,7 +66,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
 
         list = listImagePath as MutableList<String>
 
-        val adapter = SliderAdapter(list, height, width, factor)
+        val adapter = SliderAdapter(list)
         viewPager.adapter = adapter
 
 

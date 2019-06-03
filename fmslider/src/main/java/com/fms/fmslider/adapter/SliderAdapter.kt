@@ -4,14 +4,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 
 public class SliderAdapter(
-    val list: MutableList<String>,
-    val height: Int,
-    val width: Int,
-    val factor: Float
+    val list: MutableList<String>
 ) : androidx.viewpager.widget.PagerAdapter() {
 
 
@@ -25,20 +24,22 @@ public class SliderAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        imageView.adjustViewBounds = true
 
-        val params = RelativeLayout.LayoutParams(width, (height*factor).toInt())
-        imageView.setPadding(2,8,2,8)
-        imageView.layoutParams = params
-
+        val circularProgressDrawable = CircularProgressDrawable(container.context)
+        circularProgressDrawable.strokeWidth = 10f
+        circularProgressDrawable.centerRadius = 50f
+        circularProgressDrawable.start()
 
         Picasso.get()
             .load(list[position])
-            .resize(width, (height*factor).toInt())
-//            .networkPolicy(NetworkPolicy.NO_CACHE)
-//            .memoryPolicy(MemoryPolicy.NO_CACHE)
+            .placeholder(circularProgressDrawable)
+            .networkPolicy(NetworkPolicy.NO_CACHE)
+            .memoryPolicy(MemoryPolicy.NO_CACHE)
             .into(imageView)
+
         container.addView(imageView)
+
         return imageView
     }
 
