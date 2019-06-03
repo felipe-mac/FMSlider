@@ -3,6 +3,7 @@ package com.fms.fmslider.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
@@ -25,7 +26,11 @@ public class SliderAdapter(
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        imageView.layoutParams = ViewGroup.LayoutParams(width, (height*factor).toInt())
+
+        val params = RelativeLayout.LayoutParams(width, (height*factor).toInt())
+        imageView.setPadding(1,2,1,2)
+        imageView.layoutParams = params
+
         imageView.cropToPadding = true
 
         Picasso.get()
