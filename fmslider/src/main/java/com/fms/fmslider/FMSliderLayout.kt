@@ -101,6 +101,15 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         return viewPager.currentItem
     }
 
+    fun getUrlFromCurrentImage() : String {
+        try{
+            return list[viewPager.currentItem]
+        }catch (e:Exception){
+            e.printStackTrace()
+            return ""
+        }
+    }
+
     fun clearMemory() {
         viewPager.removeAllViews()
         viewPager.adapter = null
