@@ -3,14 +3,18 @@ package com.fms.fmslider.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.fms.fmslider.FMSliderLayout
+import com.fms.fmslider.interfaces.FMClickListener
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.RequestCreator
 
 public class SliderAdapter(
-    val list: MutableList<String>
+    val list: MutableList<FMSliderLayout.SliderData>,
+    val configs: FMSliderLayout.Config,
+    val listener: FMClickListener?
 ) : androidx.viewpager.widget.PagerAdapter() {
 
 
@@ -24,19 +28,47 @@ public class SliderAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
-        imageView.adjustViewBounds = true
 
-        val circularProgressDrawable = CircularProgressDrawable(container.context)
-        circularProgressDrawable.strokeWidth = 10f
-        circularProgressDrawable.centerRadius = 50f
-        circularProgressDrawable.start()
+        if(listener != null) imageView.setOnClickListener { listener.viewClickListener(list[position].action) }
 
-        Picasso.get()
+//        println("config: $configs")
+
+        val picasso = Picasso.get().load(list[position].url)
+
+        if(configs.cache) {
+            picasso.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE)
+        }
+
+        if(configs.placeholder) {
+            val circularProgressDrawable = CircularProgressDrawable(container.context)
+            circularProgressDrawable.strokeWidth = 10f
+            circularProgressDrawable.centerRadius = 50f
+            circularProgressDrawable.start()
+            picasso.placeholder(circularProgressDrawable)
+        }
+
+
+        if(configs.fit) {
+            picasso.fit()
+        }
+
+        if(configs.resize != null) {
+            val entry = configs.resize!!.entries.firstOrNull()
+            if(entry != null) {
+                picasso.centerCrop()
+                picasso.resize(entry.key, entry.value)
+                imageView.layoutParams = ViewGroup.LayoutParams(entry.key, entry.value)
+            }
+        }
+
+        picasso.into(imageView)
+
+        /*Picasso.get()
             .load(list[position])
             .placeholder(circularProgressDrawable)
             .networkPolicy(NetworkPolicy.NO_CACHE)
             .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .into(imageView)
+            .into(imageView)*/
 
         container.addView(imageView)
 
