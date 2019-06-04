@@ -28,6 +28,7 @@ public class SliderAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = ImageView(container.context)
+        imageView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
         if(listener != null) imageView.setOnClickListener { listener.viewClickListener(list[position].action) }
 
