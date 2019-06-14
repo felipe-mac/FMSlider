@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity(), FMClickListener {
         val url1 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_2_20190311155923.jpg"
         val url2 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_1_20190311155923.jpg"
         val url3 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_2_20190311155923.jpg"
-        val url4 = "https://apiinfra.futfanatics.app/assets/uploads/banners/55adc12251194f2e.jpg"
-        *//*list.add(url1)
-        list.add(url2)
-        list.add(url3)*//*
+        val url4 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_1_20190311155923.jpg"
+//        list.add(url1)
+//        list.add(url2)
+//        list.add(url3)
 
         val sliderData1 = FMSliderLayout.SliderData(url1, "act1")
         val sliderData2 = FMSliderLayout.SliderData(url2, "act2")
@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity(), FMClickListener {
         fmSlider.initBanners(list, this)
         fmSlider.startCycle()
 
-        Handler().postDelayed({ fmSlider.stopCycle() }, 20000)*/
+        Handler().postDelayed({ fmSlider.stopCycle()
+        fmSlider.clearMemory()}, 40000)*/
 
     }
 

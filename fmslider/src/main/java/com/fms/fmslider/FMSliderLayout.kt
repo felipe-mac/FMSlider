@@ -20,7 +20,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         var placeholder: Boolean = false,
         var cache: Boolean = false,
         var centerCrop: Boolean = false,
-        var fit: Boolean = false,
+        var fit: Boolean = true,
         var resize: Map<Int, Int>? = null
     )
 
@@ -41,6 +41,8 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
     private lateinit var runnable: Runnable
 
     var timeCycle : Long = 3000
+
+    var factor = 1
 
 
 
@@ -71,7 +73,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
                            viewPager.currentItem - 1, true
                        )
                        else {
-                           viewPager.setCurrentItem(viewPager.adapter!!.count - 1, true)
+                           viewPager.setCurrentItem(viewPager.adapter!!.count - 1, false)
                        }
                    }catch (e:Exception){
                        e.printStackTrace()
@@ -139,6 +141,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
 
         val adapter = SliderAdapter(list, configs, listener)
         viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 4
 
        /* viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -197,6 +200,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
     }
 
     fun clearMemory() {
+        list.clear()
         viewPager.removeAllViews()
         stopCycle()
         viewPager.adapter = null

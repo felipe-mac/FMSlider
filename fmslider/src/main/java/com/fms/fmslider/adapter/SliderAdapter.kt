@@ -36,6 +36,10 @@ public class SliderAdapter(
 
         val picasso = Picasso.get().load(list[position].url)
 
+        if(configs.fit) {
+            picasso.fit()
+        }
+
         if(configs.cache) {
             picasso.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE)
         }
@@ -49,9 +53,6 @@ public class SliderAdapter(
         }
 
 
-        if(configs.fit) {
-            picasso.fit()
-        }
 
         if(configs.resize != null) {
             val entry = configs.resize!!.entries.firstOrNull()
@@ -77,6 +78,9 @@ public class SliderAdapter(
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as ImageView)
+        println("==> destroyItem: $position")
+        val imgv = `object` as ImageView?
+        imgv?.setImageBitmap(null)
+        container.removeView(imgv)
     }
 }
