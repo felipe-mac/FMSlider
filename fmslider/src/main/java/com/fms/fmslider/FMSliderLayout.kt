@@ -137,6 +137,28 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         val adapter = SliderAdapter(list, configs, listener)
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 4
+        /*viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                println("==> position: $position")
+                if (position == 1) {
+                    adapter.playVideo()
+                }
+                else{
+                    adapter.stopVideo()
+                }
+            }
+        })*/
 
     }
 

@@ -30,23 +30,23 @@ class MainActivity : AppCompatActivity(), FMClickListener {
             println("==> prepared")
         }*/
 
-//        val list = mutableListOf<String>()
-//        val url5 = "https://cdn.futfanatics.com.br/futfanatics-nacional/videos-produtos/70184.mp4"
-//        list.add(url5)
-//        fmSlider.initImages(list)
+        /*val list = mutableListOf<String>()
+        val url5 = "https://cdn.futfanatics.com.br/futfanatics-nacional/videos-produtos/70184.mp4"
+
+        fmSlider.initImages(list)
 
 //        val list = mutableListOf<FMSliderLayout.SliderData>()
-//        val url1 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_2_20190311155923.jpg"
-//        val url2 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_1_20190311155923.jpg"
-//        val url3 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_2_20190311155923.jpg"
-//        val url4 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_1_20190311155923.jpg"
-//
-//        list.add(url1)
-//        list.add(url5)
-//        list.add(url2)
-//        list.add(url3)
-//        list.add(url4)
-//        fmSlider.initImages(list)
+        val url1 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_2_20190311155923.jpg"
+        val url2 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_1_20190311155923.jpg"
+        val url3 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_2_20190311155923.jpg"
+        val url4 = "https://static3.tcdn.com.br/img/img_prod/311840/camisa_nike_psg_home_2017_58219_1_20190311155923.jpg"
+
+        list.add(url1)
+        list.add(url5)
+        list.add(url2)
+        list.add(url3)
+        list.add(url4)
+        fmSlider.initImages(list)*/
 //        list.add(url1)
 //        list.add(url2)
 //        list.add(url3)
