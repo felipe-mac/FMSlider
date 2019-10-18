@@ -40,10 +40,10 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
     private lateinit var mHandler: Handler
     private lateinit var runnable: Runnable
 
-    var timeCycle : Long = 3000
+    var timeCycle: Long = 4000
 
     var factor = 1
-
+    private var hasCycleStarted = false
 
 
     constructor(context: Context?) : super(context) {
@@ -54,7 +54,11 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         LayoutInflater.from(context).inflate(R.layout.slider_layout, this, true)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
 
         LayoutInflater.from(context).inflate(R.layout.slider_layout, this, true)
     }
@@ -63,36 +67,27 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         if (v != null) {
             when (v.id) {
                 R.id.arrowLeft -> {
-                   /* if ((viewPager.currentItem - 1) >= 0) viewPager.setCurrentItem(
-                        viewPager.currentItem - 1, true
-                    )
-                    if (viewPager.currentItem == 0) arrowLeft.visibility = GONE
-                    arrowRight.visibility = View.VISIBLE*/
-                   try{
-                       if ((viewPager.currentItem - 1) >= 0) viewPager.setCurrentItem(
-                           viewPager.currentItem - 1, true
-                       )
-                       else {
-                           viewPager.setCurrentItem(viewPager.adapter!!.count - 1, false)
-                       }
-                   }catch (e:Exception){
-                       e.printStackTrace()
-                   }
+                    try {
+                        if ((viewPager.currentItem - 1) >= 0) viewPager.setCurrentItem(
+                            viewPager.currentItem - 1, true
+                        )
+                        else {
+                            viewPager.setCurrentItem(viewPager.adapter!!.count - 1, false)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
 
                 }
 
                 R.id.arrowRight -> {
-                   /* if ((viewPager.currentItem + 1) <= viewPager.adapter!!.count - 1)
-                        viewPager.setCurrentItem(viewPager.currentItem + 1, true)
-                    if (viewPager.currentItem >= viewPager.adapter!!.count - 1) arrowRight.visibility = GONE
-                    arrowLeft.visibility = View.VISIBLE*/
                     try {
                         if ((viewPager.currentItem + 1) <= viewPager.adapter!!.count - 1)
                             viewPager.setCurrentItem(viewPager.currentItem + 1, true)
                         else {
                             viewPager.setCurrentItem(0, true)
                         }
-                    }catch (e:Exception){
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
@@ -116,7 +111,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         sliderConfigs(null)
     }
 
-    fun initBanners(sliderList: List<SliderData>, listener:FMClickListener) {
+    fun initBanners(sliderList: List<SliderData>, listener: FMClickListener) {
 
         list.clear()
         list = sliderList as MutableList<SliderData>
@@ -124,7 +119,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         sliderConfigs(listener)
     }
 
-    private fun sliderConfigs(listener : FMClickListener?) {
+    private fun sliderConfigs(listener: FMClickListener?) {
 
         arrowLeft.visibility = View.VISIBLE
         arrowRight.visibility = View.VISIBLE
@@ -143,25 +138,10 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 4
 
-       /* viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                arrowLeft.visibility = VISIBLE
-                arrowRight.visibility = VISIBLE
-
-*//*                if (position == 0) arrowLeft.visibility = GONE
-                if (position >= viewPager.adapter!!.count - 1) arrowRight.visibility = GONE*//*
-            }
-
-        })*/
     }
 
     fun startCycle() {
+        hasCycleStarted = true
         mHandler = Handler()
         runnable = Runnable {
             arrowRight.performClick()
@@ -172,19 +152,13 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
 
     fun stopCycle() {
         try {
-            mHandler.removeCallbacks(runnable)
+            if (hasCycleStarted)
+                mHandler.removeCallbacks(runnable)
         } catch (e: UninitializedPropertyAccessException) {
-            e.printStackTrace()
+            // e.printStackTrace()
         }
     }
 
-/*    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        if(listener != null && ev?.action == MotionEvent.ACTION_DOWN) {
-            println("==> onIntercept: ${viewPager.currentItem}")
-            listener!!.viewClickListener(viewPager.currentItem)
-        }
-        return super.onInterceptTouchEvent(ev)
-    }*/
 
     fun getCurrentPage(): Int {
         return viewPager.currentItem

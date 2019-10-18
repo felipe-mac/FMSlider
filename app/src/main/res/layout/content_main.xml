@@ -12,5 +12,11 @@
     <com.fms.fmslider.FMSliderLayout
             android:id="@+id/fmSlider"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
+
+<!--    <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>-->
 </RelativeLayout>
