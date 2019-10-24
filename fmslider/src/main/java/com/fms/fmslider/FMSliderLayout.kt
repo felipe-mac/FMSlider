@@ -39,6 +39,7 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
 
     private lateinit var mHandler: Handler
     private lateinit var runnable: Runnable
+    private lateinit var adapter : SliderAdapter
 
     var timeCycle: Long = 4000
 
@@ -77,7 +78,6 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-
                 }
 
                 R.id.arrowRight -> {
@@ -134,9 +134,9 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
         configs.placeholder = placeholder
         configs.resize = resize
 
-        val adapter = SliderAdapter(list, configs, listener)
+        adapter = SliderAdapter(list, configs, listener)
         viewPager.adapter = adapter
-        viewPager.offscreenPageLimit = 4
+        viewPager.offscreenPageLimit = 5
         /*viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 
@@ -197,8 +197,8 @@ class FMSliderLayout : RelativeLayout, View.OnClickListener {
 
     fun clearMemory() {
         list.clear()
-        viewPager.removeAllViews()
         stopCycle()
+        viewPager.removeAllViews()
         viewPager.adapter = null
     }
 

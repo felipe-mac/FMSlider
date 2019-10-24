@@ -28,7 +28,6 @@ public class SliderAdapter(
     val listener: FMClickListener?
 ) : androidx.viewpager.widget.PagerAdapter() {
 
-//    private var vid : VideoView? = null
 
     override fun isViewFromObject(view: View, obj: Any): Boolean {
         return view == obj
@@ -40,32 +39,29 @@ public class SliderAdapter(
 
     @Suppress("UNREACHABLE_CODE")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-
         val link = list[position].url
         val q = link.split(".")
         if (q.count() > 0) {
             if (q.last().contentEquals("mp4")) {
 
-                println("==> video")
+//                println("==> video")
 
                 val inflater = container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val v = inflater.inflate(R.layout.item_video, container, false)
                 v.progress_circular.show()
                 val videoView = v.videoView
-                videoView.setZOrderOnTop(true)
-
-//                vid = videoView
-
+//                videoView.setZOrderOnTop(true)
 
                 val uri = Uri.parse(link)
+                v.visibility = View.INVISIBLE
                 videoView.setVideoURI(uri)
                 videoView.start()
                 videoView.setOnPreparedListener { mp ->
                     mp.isLooping = true
+//                    videoView.setZOrderOnTop(false)
                     v.progress_circular.hide()
-                    videoView.setZOrderOnTop(false)
+                    v.visibility = View.VISIBLE
                 }
-
 
                 container.addView(v)
                 return v
@@ -134,15 +130,6 @@ public class SliderAdapter(
         }
         container.removeView(view)
     }
-
-//    fun playVideo(){
-//        vid?.requestFocus()
-//        vid?.start()
-//    }
-//
-//    fun stopVideo() {
-//        vid?.stopPlayback()
-//    }
 
 
 }
