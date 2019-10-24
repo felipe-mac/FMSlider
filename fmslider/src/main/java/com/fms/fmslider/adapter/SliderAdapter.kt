@@ -56,7 +56,6 @@ public class SliderAdapter(
 
 //                vid = videoView
 
-                container.addView(v)
 
                 val uri = Uri.parse(link)
                 videoView.setVideoURI(uri)
@@ -64,8 +63,11 @@ public class SliderAdapter(
                 videoView.setOnPreparedListener { mp ->
                     mp.isLooping = true
                     v.progress_circular.hide()
+                    videoView.setZOrderOnTop(false)
                 }
 
+
+                container.addView(v)
                 return v
             }
         }
