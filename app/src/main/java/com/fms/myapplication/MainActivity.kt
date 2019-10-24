@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), FMClickListener {
             println("==> prepared")
         }*/
 
-        /*val list = mutableListOf<String>()
+        val list = mutableListOf<String>()
         val url5 = "https://cdn.futfanatics.com.br/futfanatics-nacional/videos-produtos/70184.mp4"
 
         fmSlider.initImages(list)
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), FMClickListener {
         list.add(url2)
         list.add(url3)
         list.add(url4)
-        fmSlider.initImages(list)*/
+        fmSlider.initImages(list)
 //        list.add(url1)
 //        list.add(url2)
 //        list.add(url3)

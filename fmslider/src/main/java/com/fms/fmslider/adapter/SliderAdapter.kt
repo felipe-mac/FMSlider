@@ -50,18 +50,23 @@ public class SliderAdapter(
                 val v = inflater.inflate(R.layout.item_video, container, false)
                 v.progress_circular.show()
                 val videoView = v.videoView
-//                videoView.setZOrderOnTop(true)
+                videoView.setZOrderOnTop(true)
 
                 val uri = Uri.parse(link)
-                v.visibility = View.INVISIBLE
+                v.visibility = View.GONE
                 videoView.setVideoURI(uri)
                 videoView.start()
                 videoView.setOnPreparedListener { mp ->
                     mp.isLooping = true
-//                    videoView.setZOrderOnTop(false)
                     v.progress_circular.hide()
                     v.visibility = View.VISIBLE
+                    videoView.setZOrderOnTop(false)
                 }
+
+                videoView.setOnCompletionListener {
+                    videoView.setZOrderOnTop(false)
+                }
+
 
                 container.addView(v)
                 return v
