@@ -53,20 +53,12 @@ public class SliderAdapter(
                 videoView.setZOrderOnTop(true)
 
                 val uri = Uri.parse(link)
-                v.visibility = View.GONE
                 videoView.setVideoURI(uri)
                 videoView.start()
                 videoView.setOnPreparedListener { mp ->
                     mp.isLooping = true
                     v.progress_circular.hide()
-                    v.visibility = View.VISIBLE
-                    videoView.setZOrderOnTop(false)
                 }
-
-                videoView.setOnCompletionListener {
-                    videoView.setZOrderOnTop(false)
-                }
-
 
                 container.addView(v)
                 return v
