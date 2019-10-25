@@ -50,7 +50,6 @@ public class SliderAdapter(
                 val v = inflater.inflate(R.layout.item_video, container, false)
                 v.progress_circular.show()
                 val videoView = v.videoView
-                videoView.setZOrderOnTop(true)
 
                 val uri = Uri.parse(link)
                 videoView.setVideoURI(uri)
